@@ -3,6 +3,7 @@
 import { useRef, useState } from "react"
 import { FileInput } from "./FileInput"
 import { BusyIndicator } from "./BusyIndicator"
+import { ErrorToast } from "./ErrorToast"
 
 const defaultPhotoPath = ""
 
@@ -11,6 +12,7 @@ export const Photo = () => {
     const photoPreviewRef = useRef<HTMLImageElement>()
     const [isImageSelected, setIsImageSelected] = useState(false)
     const [isScanning, setIsScanning] = useState(false)
+    const [isFailure, setIsFailure] = useState(false)
 
     function onImagePreviewClick() {
         !!photoRef.current && photoRef.current.click()
@@ -23,6 +25,7 @@ export const Photo = () => {
     }
 
     function onScanBtnClick() {
+        if (!isImageSelected) return setIsFailure(true)
         setIsScanning(true)
         setTimeout(() => setIsScanning(false), 2000)
     }
@@ -41,6 +44,7 @@ export const Photo = () => {
 
     return (
         <div className="flex flex-col gap-[1rem] items-center w-fit mb-[1rem]">
+            <ErrorToast isFailure={isFailure} setIsFailure={setIsFailure} />
             <div className="relative">
                 <BusyIndicator isScanning={isScanning} />
                 {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
