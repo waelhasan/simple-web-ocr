@@ -11,8 +11,9 @@
   --active: rgb(96, 145, 212);
   --active-alternate: rgb(207, 216, 229);
   --main: rgb(136, 197, 74);
-    --main-alternate-1: rgb(191, 205, 176);
-    --golden: rgb(196 162 10);
+  --main-alternate-1: rgb(191, 205, 176);
+  --golden: rgb(196 162 10);
+  --overlay: rgba(55, 120, 128, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {

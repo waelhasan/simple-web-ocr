@@ -21,6 +21,11 @@ export const Photo = () => {
         setIsImageSelected(false)
     }
 
+    function onScanBtnClick() {
+        setIsScanning(true)
+        setTimeout(() => setIsScanning(false), 2000)
+    }
+
     function onPhotoChange(evt: any) {
         const tgt = evt.target
         const files = tgt.files
@@ -34,23 +39,25 @@ export const Photo = () => {
     }
 
     return (
-        <div className="flex flex-col gap-[1rem] items-center w-full mb-[1rem]">
-            <div className="
+        <div className="flex flex-col gap-[1rem] items-center w-fit mb-[1rem]">
+        <div className="relative">
+                {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
+                <div className="
                 cursor-pointer
                 flex items-center justify-center
                 h-[30rem] min-w-[30rem] 
                 border-[1px] border-solid border-[--background-alternate-2]"
-                onClick={onImagePreviewClick}
-            >
-                {!isImageSelected ?
-                    <h1>
-                        Select a photo to start scanning
-                    </h1> : null
-                }
-                <img className="h-full"
-                    ref={photoPreviewRef as any}
-                />
-            </div >
+                    onClick={onImagePreviewClick}>
+                    {!isImageSelected ?
+                        <h1>
+                            Select a photo to start scanning
+                        </h1> : null
+                    }
+                    <img className="h-full"
+                        ref={photoPreviewRef as any}
+                    />
+                </div >
+            </div>
             <FileInput
                 id="photo"
                 name="photo"
@@ -58,7 +65,7 @@ export const Photo = () => {
                 multipleFiles={false}
                 onChange={onPhotoChange}
                 onClearBtnClick={onClearBtnClick}
-                onScanBtnClick={() => alert('SCANNING')}
+                onScanBtnClick={onScanBtnClick}
                 isScanning={isScanning}
             />
         </div>
