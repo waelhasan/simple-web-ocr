@@ -2,7 +2,6 @@ import { MutableRefObject } from 'react'
 
 export function FileInput({
     id,
-    name,
     onChange,
     inputRef,
     isScanning,
@@ -11,7 +10,6 @@ export function FileInput({
     multipleFiles = false
 }: {
     id: string,
-    name: string,
     onChange: (event: any) => void,
     inputRef: MutableRefObject<HTMLInputElement | undefined>,
     isScanning: boolean,
@@ -24,8 +22,7 @@ export function FileInput({
             flex gap-0
             [&_input:disabled+label]:bg-gray-500 
                 [&_input:disabled+label]:border-transparent
-                [&_input:disabled+label]:cursor-default
-        ">
+                [&_input:disabled+label]:cursor-default">
             <input
                 id={id}
                 type="file"
@@ -34,8 +31,7 @@ export function FileInput({
                 accept="image/*"
                 onChange={onChange}
                 ref={inputRef as any}
-                disabled={isScanning}
-            />
+                disabled={isScanning} />
             <button
                 type="button"
                 disabled={isScanning}
@@ -48,8 +44,7 @@ export function FileInput({
                 bg-[--active] hover:bg-[--active-alternate] disabled:bg-gray-500
                 py-[0.5rem] px-[3rem]
                 cursor-pointer
-                w-full h-full
-            ">
+                w-full h-full">
                 Scan
             </button>
             <button
@@ -63,8 +58,7 @@ export function FileInput({
                     disabled:border-transparent
                 duration-75
                 bg-[--background-danger] hover:bg-[--background-danger-alternate-1] disabled:bg-gray-500
-                py-[0.5rem] px-[2.5rem]
-            ">
+                py-[0.5rem] px-[2.5rem]">
                 Remove
             </button>
         </div>
