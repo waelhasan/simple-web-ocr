@@ -10,7 +10,9 @@
   --background-danger-alternate-1: rgb(244, 211, 210);
   --active: rgb(96, 145, 212);
   --active-alternate: rgb(207, 216, 229);
-  --golden: rgb(196 162 10);
+  --main: rgb(136, 197, 74);
+    --main-alternate-1: rgb(191, 205, 176);
+    --golden: rgb(196 162 10);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +24,8 @@
     --background-danger-alternate-1: rgb(56, 35, 33);
     --active: rgb(17 48 92);
     --active-alternate: rgb(14, 35, 64);
+    --main: rgb(59, 104, 14);
+    --main-alternate-1: rgb(35, 58, 12);
     --golden: rgb(178, 192, 71);
   }
 }

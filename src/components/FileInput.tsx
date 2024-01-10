@@ -7,6 +7,7 @@ export function FileInput({
     inputRef,
     isScanning,
     onClearBtnClick,
+    onScanBtnClick,
     multipleFiles = false
 }: {
     id: string,
@@ -15,6 +16,7 @@ export function FileInput({
     inputRef: MutableRefObject<HTMLInputElement | undefined>,
     isScanning: boolean,
     onClearBtnClick: () => void,
+    onScanBtnClick: () => void,
     multipleFiles: boolean
 }) {
     return (
@@ -45,6 +47,21 @@ export function FileInput({
             ">
                 Select
             </label>
+            <button
+                type="button"
+                disabled={isScanning}
+                onClick={onScanBtnClick}
+                className="
+                inline-block
+                border-[1px] border-transparent 
+                    hover:border-[--background-alternate-2]
+                    disabled:border-transparent
+                duration-75
+                bg-[--main] hover:bg-[--main-alternate-1] disabled:bg-gray-500
+                py-[0.5rem] px-[3rem]
+            ">
+                Scan
+            </button>
             <button
                 type="button"
                 disabled={isScanning}

@@ -58,6 +58,7 @@ export const Photo = () => {
                 multipleFiles={false}
                 onChange={onPhotoChange}
                 onClearBtnClick={onClearBtnClick}
+                onScanBtnClick={() => alert('SCANNING')}
                 isScanning={isScanning}
             />
         </div>
