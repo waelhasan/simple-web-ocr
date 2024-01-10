@@ -8,6 +8,7 @@ const defaultPhotoPath = ""
 export const Photo = () => {
     const photoRef = useRef<HTMLInputElement>()
     const photoPreviewRef = useRef<HTMLImageElement>()
+    const [isImageSelected, setIsImageSelected] = useState(false)
     const [isScanning, setIsScanning] = useState(false)
 
     function onImagePreviewClick() {
@@ -17,6 +18,7 @@ export const Photo = () => {
     function onClearBtnClick() {
         !!photoRef.current && (photoRef.current.value = "")
         photoPreviewRef.current!.src = defaultPhotoPath!
+        setIsImageSelected(false)
     }
 
     function onPhotoChange(evt: any) {
@@ -27,19 +29,26 @@ export const Photo = () => {
             const fr = new FileReader()
             fr.onload = () => !!fr.result && (photoPreviewRef.current!.src = fr.result as any)
             fr.readAsDataURL(files[0])
+            setIsImageSelected(true)
         }
     }
 
     return (
         <div className="flex flex-col gap-[1rem] items-center w-full mb-[1rem]">
-            <h1>
-                Select a photo to start scanning
-            </h1>
-            <div className="min-w-[30rem] border-[1px] border-solid border-[--background-alternate-2]">
-                <img className="h-[30rem] cursor-pointer"
+            <div className="
+                cursor-pointer
+                flex items-center justify-center
+                h-[30rem] min-w-[30rem] 
+                border-[1px] border-solid border-[--background-alternate-2]"
+                onClick={onImagePreviewClick}
+            >
+                {!isImageSelected ?
+                    <h1>
+                        Select a photo to start scanning
+                    </h1> : null
+                }
+                <img className="h-full"
                     ref={photoPreviewRef as any}
-                    onClick={onImagePreviewClick}
-                    src={defaultPhotoPath}
                 />
             </div >
             <FileInput
