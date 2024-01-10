@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react"
 import { FileInput } from "./FileInput"
+import { BusyIndicator } from "./BusyIndicator"
 
 const defaultPhotoPath = ""
 
@@ -41,6 +42,7 @@ export const Photo = () => {
     return (
         <div className="flex flex-col gap-[1rem] items-center w-fit mb-[1rem]">
             <div className="relative">
+                <BusyIndicator isScanning={isScanning} />
                 {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
                 <div className="
                     cursor-pointer
