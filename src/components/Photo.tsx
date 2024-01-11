@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
+import Tesseract, { ImageLike } from "tesseract.js"
 import { FileInput } from "./FileInput"
 import { BusyIndicator } from "./BusyIndicator"
 import { ErrorToast } from "./ErrorToast"
@@ -13,6 +14,8 @@ export const Photo = () => {
     const [isImageSelected, setIsImageSelected] = useState(false)
     const [isScanning, setIsScanning] = useState(false)
     const [isFailure, setIsFailure] = useState(false)
+    const [photoData, setPhotoData] = useState<ImageLike>()
+    const [scannedText, setScannedText] = useState<string>()
 
     function onImagePreviewClick() {
         !!photoRef.current && photoRef.current.click()
@@ -24,13 +27,18 @@ export const Photo = () => {
         setIsImageSelected(false)
     }
 
-    function onScanBtnClick() {
+    async function onScanBtnClick() {
         if (!isImageSelected) return setIsFailure(true)
         setIsScanning(true)
-        setTimeout(() => setIsScanning(false), 2000)
+        // Extrtact the text
+        if (!!photoData) {
+            const result = await Tesseract.recognize(photoData, "eng")
+            setScannedText(result.data.text)
+            setIsScanning(false)
+        }
     }
 
-    function onPhotoChange(evt: any) {
+    async function onPhotoChange(evt: any) {
         const tgt = evt.target
         const files = tgt.files
 
@@ -38,6 +46,7 @@ export const Photo = () => {
             const fr = new FileReader()
             fr.onload = () => !!fr.result && (photoPreviewRef.current!.src = fr.result as any)
             fr.readAsDataURL(files[0])
+            setPhotoData(files[0])
             setIsImageSelected(true)
         }
     }
@@ -70,6 +79,7 @@ export const Photo = () => {
                 onClearBtnClick={onClearBtnClick}
                 onScanBtnClick={onScanBtnClick}
                 isScanning={isScanning} />
+            <div>{scannedText}</div>
         </div>
     )
 }
