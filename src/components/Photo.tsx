@@ -5,8 +5,10 @@ import Tesseract, { ImageLike } from "tesseract.js"
 import { FileInput } from "./FileInput"
 import { BusyIndicator } from "./BusyIndicator"
 import { ErrorToast } from "./ErrorToast"
+import { ScannedText } from "./ScannedText"
 
 const defaultPhotoPath = ""
+const defaultImageLang = "eng"
 
 export const Photo = () => {
     const photoRef = useRef<HTMLInputElement>()
@@ -16,6 +18,7 @@ export const Photo = () => {
     const [isFailure, setIsFailure] = useState(false)
     const [photoData, setPhotoData] = useState<ImageLike>()
     const [scannedText, setScannedText] = useState<string>()
+    const [imageLang, setImageLang] = useState<string>(defaultImageLang)
 
     function onImagePreviewClick() {
         !!photoRef.current && photoRef.current.click()
@@ -25,6 +28,8 @@ export const Photo = () => {
         !!photoRef.current && (photoRef.current.value = "")
         photoPreviewRef.current!.src = defaultPhotoPath!
         setIsImageSelected(false)
+        setScannedText("")
+        setImageLang(defaultImageLang)
     }
 
     async function onScanBtnClick() {
@@ -32,7 +37,7 @@ export const Photo = () => {
         setIsScanning(true)
         // Extrtact the text
         if (!!photoData) {
-            const result = await Tesseract.recognize(photoData, "eng")
+            const result = await Tesseract.recognize(photoData, imageLang)
             setScannedText(result.data.text)
             setIsScanning(false)
         }
@@ -79,7 +84,7 @@ export const Photo = () => {
                 onClearBtnClick={onClearBtnClick}
                 onScanBtnClick={onScanBtnClick}
                 isScanning={isScanning} />
-            <div>{scannedText}</div>
+            <ScannedText text={scannedText} />
         </div>
     )
 }
