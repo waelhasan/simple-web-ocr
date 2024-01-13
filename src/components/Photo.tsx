@@ -62,6 +62,7 @@ export const Photo = () => {
                 isImageSelected={isImageSelected}
                 isScanning={isScanning} />
             <LanguagesMenu
+                isImageSelected={isImageSelected}
                 isScanning={isScanning}
                 language={imageLang}
                 setLanguage={setImageLang} />
