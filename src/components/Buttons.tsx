@@ -2,7 +2,9 @@ export function Buttons({
     isScanning,
     onClearBtnClick,
     onScanBtnClick,
+    isImageSelected
 }: {
+    isImageSelected: boolean,
     isScanning: boolean,
     onClearBtnClick: () => void,
     onScanBtnClick: () => void,
@@ -11,7 +13,7 @@ export function Buttons({
         <div className="flex gap-0">
             <button
                 type="button"
-                disabled={isScanning}
+                disabled={isScanning || !isImageSelected}
                 onClick={onScanBtnClick}
                 className="
                 rounded-l-[1rem] border-[1px] border-transparent 
@@ -26,7 +28,7 @@ export function Buttons({
             </button>
             <button
                 type="button"
-                disabled={isScanning}
+                disabled={isScanning || !isImageSelected}
                 onClick={onClearBtnClick}
                 className="
                 inline-block

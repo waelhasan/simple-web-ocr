@@ -76,6 +76,7 @@ export const Photo = () => {
                 ref={photoRef as any}
                 disabled={isScanning} />
             <Buttons
+                isImageSelected={isImageSelected}
                 onClearBtnClick={onClearBtnClick}
                 onScanBtnClick={onScanBtnClick}
                 isScanning={isScanning} />
