@@ -1,37 +1,14 @@
-import { MutableRefObject } from 'react'
-
-export function FileInput({
-    id,
-    onChange,
-    inputRef,
+export function Buttons({
     isScanning,
     onClearBtnClick,
     onScanBtnClick,
-    multipleFiles = false
 }: {
-    id: string,
-    onChange: (event: any) => void,
-    inputRef: MutableRefObject<HTMLInputElement | undefined>,
     isScanning: boolean,
     onClearBtnClick: () => void,
     onScanBtnClick: () => void,
-    multipleFiles: boolean
 }) {
     return (
-        <div className="
-            flex gap-0
-            [&_input:disabled+label]:bg-gray-500 
-                [&_input:disabled+label]:border-transparent
-                [&_input:disabled+label]:cursor-default">
-            <input
-                id={id}
-                type="file"
-                className="hidden"
-                multiple={multipleFiles}
-                accept="image/*"
-                onChange={onChange}
-                ref={inputRef as any}
-                disabled={isScanning} />
+        <div className="flex gap-0">
             <button
                 type="button"
                 disabled={isScanning}

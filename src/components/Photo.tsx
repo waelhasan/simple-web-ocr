@@ -2,11 +2,11 @@
 
 import { useRef, useState } from "react"
 import Tesseract, { ImageLike } from "tesseract.js"
-import { FileInput } from "./FileInput"
-import { BusyIndicator } from "./BusyIndicator"
 import { ErrorToast } from "./ErrorToast"
 import { ScannedText } from "./ScannedText"
 import { LanguagesMenu } from "./LanguagesMenu"
+import { Buttons } from "./Buttons"
+import { PhotoArea } from "./PhotoArea"
 
 const defaultPhotoPath = ""
 const defaultImageLang = "eng"
@@ -20,10 +20,6 @@ export const Photo = () => {
     const [photoData, setPhotoData] = useState<ImageLike>()
     const [scannedText, setScannedText] = useState<string>()
     const [imageLang, setImageLang] = useState<string>(defaultImageLang)
-
-    function onImagePreviewClick() {
-        !!photoRef.current && photoRef.current.click()
-    }
 
     function onClearBtnClick() {
         !!photoRef.current && (photoRef.current.value = "")
@@ -60,29 +56,22 @@ export const Photo = () => {
     return (
         <div className="flex flex-col gap-[1rem] items-center w-fit mb-[1rem]">
             <ErrorToast isFailure={isFailure} setIsFailure={setIsFailure} />
-            <div className="relative">
-                <BusyIndicator isScanning={isScanning} />
-                {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
-                <div className="
-                    cursor-pointer
-                    flex items-center justify-center
-                    h-[30rem] min-w-[30rem] 
-                    border-[1px] border-solid border-[--background-alternate-2]"
-                    onClick={onImagePreviewClick}>
-                    {!isImageSelected ?
-                        <h1 className="text-[1.5rem]">
-                            Click here to select a photo
-                        </h1> : null
-                    }
-                    <img className="h-full" ref={photoPreviewRef as any} />
-                </div>
-            </div>
+            <PhotoArea
+                photoRef={photoRef}
+                photoPreviewRef={photoPreviewRef}
+                isImageSelected={isImageSelected}
+                isScanning={isScanning} />
             <LanguagesMenu language={imageLang} setLanguage={setImageLang} />
-            <FileInput
+            <input
                 id="photo"
-                inputRef={photoRef}
-                multipleFiles={false}
+                type="file"
+                className="hidden"
+                multiple={false}
+                accept="image/*"
                 onChange={onPhotoChange}
+                ref={photoRef as any}
+                disabled={isScanning} />
+            <Buttons
                 onClearBtnClick={onClearBtnClick}
                 onScanBtnClick={onScanBtnClick}
                 isScanning={isScanning} />
