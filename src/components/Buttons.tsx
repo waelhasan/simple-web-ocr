@@ -36,7 +36,7 @@ export function Buttons({
                 duration-75
                 bg-[--background-danger] hover:bg-[--background-danger-alternate-1] disabled:bg-gray-500
                 py-[0.5rem] px-[2.5rem]">
-                Remove
+                Clear
             </button>
         </div>
     )
