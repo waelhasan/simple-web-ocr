@@ -7,13 +7,13 @@ export const PhotoArea = ({
     isImageSelected,
     photoRef,
     photoPreviewRef,
-    usePhotoFile
+    setPhotoFromFile
 }: {
     isScanning: boolean,
     isImageSelected: boolean
     photoRef: MutableRefObject<HTMLInputElement | undefined>
     photoPreviewRef: MutableRefObject<HTMLImageElement | undefined>
-    usePhotoFile: (photoFile: File) => void
+    setPhotoFromFile: (photoFile: File) => void
 }) => {
     function onImagePreviewClick() {
         !!photoRef.current && photoRef.current.click()
@@ -23,9 +23,9 @@ export const PhotoArea = ({
         ev.preventDefault()
         if (ev.dataTransfer.items) {
             [...ev.dataTransfer.items].forEach(
-                item => item.kind === "file" && usePhotoFile(item.getAsFile()!)
+                item => item.kind === "file" && setPhotoFromFile(item.getAsFile()!)
             )
-        } else[...ev.dataTransfer.files].forEach(usePhotoFile)
+        } else[...ev.dataTransfer.files].forEach(setPhotoFromFile)
     }
 
     return (

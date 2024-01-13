@@ -40,7 +40,7 @@ export const Photo = () => {
         }
     }
 
-    function usePhotoFile(file: File) {
+    function setPhotoFromFile(file: File) {
         if (FileReader && file) {
             const fr = new FileReader()
             fr.onload = () => !!fr.result && (photoPreviewRef.current!.src = fr.result as any)
@@ -53,7 +53,7 @@ export const Photo = () => {
     async function onPhotoChange(evt: any) {
         const tgt = evt.target
         const files = tgt.files
-        usePhotoFile(files?.[0])
+        setPhotoFromFile(files?.[0])
     }
 
     return (
@@ -64,7 +64,7 @@ export const Photo = () => {
                 photoPreviewRef={photoPreviewRef}
                 isImageSelected={isImageSelected}
                 isScanning={isScanning}
-                usePhotoFile={usePhotoFile} />
+                setPhotoFromFile={setPhotoFromFile} />
             <LanguagesMenu
                 isImageSelected={isImageSelected}
                 isScanning={isScanning}
