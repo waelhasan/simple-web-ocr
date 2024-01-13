@@ -22,7 +22,7 @@ export function ErrorToast({ isFailure, setIsFailure }: {
             p-[2rem] 
             rounded-[2rem]
         ">
-            Something went wrong, please try again later.
+            Please select a photo to scan.
             <IoIosCloseCircleOutline onClick={onCloseIconClick} className="
                 absolute top-[-1rem] right-[-1rem] 
                 text-[2rem] 
