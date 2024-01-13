@@ -6,6 +6,7 @@ import { FileInput } from "./FileInput"
 import { BusyIndicator } from "./BusyIndicator"
 import { ErrorToast } from "./ErrorToast"
 import { ScannedText } from "./ScannedText"
+import { LanguagesMenu } from "./LanguagesMenu"
 
 const defaultPhotoPath = ""
 const defaultImageLang = "eng"
@@ -76,6 +77,7 @@ export const Photo = () => {
                     <img className="h-full" ref={photoPreviewRef as any} />
                 </div>
             </div>
+            <LanguagesMenu language={imageLang} setLanguage={setImageLang} />
             <FileInput
                 id="photo"
                 inputRef={photoRef}
