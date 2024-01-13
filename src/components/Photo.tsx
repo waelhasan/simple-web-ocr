@@ -61,7 +61,10 @@ export const Photo = () => {
                 photoPreviewRef={photoPreviewRef}
                 isImageSelected={isImageSelected}
                 isScanning={isScanning} />
-            <LanguagesMenu language={imageLang} setLanguage={setImageLang} />
+            <LanguagesMenu
+                isScanning={isScanning}
+                language={imageLang}
+                setLanguage={setImageLang} />
             <input
                 id="photo"
                 type="file"

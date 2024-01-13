@@ -1,6 +1,11 @@
-export function LanguagesMenu({ language, setLanguage }: {
+export function LanguagesMenu({
+    language,
+    setLanguage,
+    isScanning
+}: {
     language: string,
     setLanguage: (lang: string) => void
+    isScanning: boolean
 }) {
     return (
         <span>
@@ -8,7 +13,9 @@ export function LanguagesMenu({ language, setLanguage }: {
                 Language of the text in the image
             </span>
             <select
+                disabled={isScanning}
                 onChange={e => setLanguage(e.target.value)}
+                value={language}
                 className="
                 inline-block
                 rounded-[1rem]
