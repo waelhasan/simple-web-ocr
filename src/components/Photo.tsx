@@ -40,17 +40,20 @@ export const Photo = () => {
         }
     }
 
+    function usePhotoFile(file: File) {
+        if (FileReader && file) {
+            const fr = new FileReader()
+            fr.onload = () => !!fr.result && (photoPreviewRef.current!.src = fr.result as any)
+            fr.readAsDataURL(file)
+            setPhotoData(file)
+            setIsImageSelected(true)
+        }
+    }
+
     async function onPhotoChange(evt: any) {
         const tgt = evt.target
         const files = tgt.files
-
-        if (FileReader && files && files.length) {
-            const fr = new FileReader()
-            fr.onload = () => !!fr.result && (photoPreviewRef.current!.src = fr.result as any)
-            fr.readAsDataURL(files[0])
-            setPhotoData(files[0])
-            setIsImageSelected(true)
-        }
+        usePhotoFile(files?.[0])
     }
 
     return (
@@ -60,7 +63,8 @@ export const Photo = () => {
                 photoRef={photoRef}
                 photoPreviewRef={photoPreviewRef}
                 isImageSelected={isImageSelected}
-                isScanning={isScanning} />
+                isScanning={isScanning}
+                usePhotoFile={usePhotoFile} />
             <LanguagesMenu
                 isImageSelected={isImageSelected}
                 isScanning={isScanning}

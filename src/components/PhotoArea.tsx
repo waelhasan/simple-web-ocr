@@ -1,24 +1,38 @@
-import { MutableRefObject } from "react"
+import { DragEvent, MutableRefObject } from "react"
 import { BusyIndicator } from "./BusyIndicator"
 
 export const PhotoArea = ({
     isScanning,
     isImageSelected,
     photoRef,
-    photoPreviewRef
+    photoPreviewRef,
+    usePhotoFile
 }: {
     isScanning: boolean,
     isImageSelected: boolean
     photoRef: MutableRefObject<HTMLInputElement | undefined>
     photoPreviewRef: MutableRefObject<HTMLImageElement | undefined>
+    usePhotoFile: (photoFile: File) => void
 }) => {
     function onImagePreviewClick() {
         !!photoRef.current && photoRef.current.click()
     }
 
+    function onDrop(ev: DragEvent<HTMLDivElement>) {
+        ev.preventDefault()
+        if (ev.dataTransfer.items) {
+            [...ev.dataTransfer.items].forEach(
+                item => item.kind === "file" && usePhotoFile(item.getAsFile()!)
+            )
+        } else[...ev.dataTransfer.files].forEach(usePhotoFile)
+    }
+
     return (
-        <div className="
+        <div onDragOver={e => e.preventDefault()}
+            onDrop={onDrop}
+            className="
             relative 
+            drop-shadow
             bg-[--background-alternate-2] 
             rounded-[1rem]
             border-[1px] border-solid border-[--background-alternate-2]">
