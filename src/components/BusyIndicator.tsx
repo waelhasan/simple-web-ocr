@@ -1,5 +1,3 @@
-import { useContext } from "react"
-
 export function BusyIndicator({ isScanning }: { isScanning: boolean }) {
     return isScanning && (
         <div className="

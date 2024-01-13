@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from "react"
+import { MutableRefObject } from "react"
 import { BusyIndicator } from "./BusyIndicator"
 
 export const PhotoArea = ({
