@@ -1,4 +1,5 @@
 import { DragEvent, MutableRefObject } from "react"
+import { IoCloudUploadOutline } from "react-icons/io5"
 import { BusyIndicator } from "./BusyIndicator"
 
 export const PhotoArea = ({
@@ -32,24 +33,34 @@ export const PhotoArea = ({
             onDrop={onDrop}
             className="
             relative 
+            flex flex-col justify-center items-center
             drop-shadow
             bg-[--background-alternate-2] 
-            rounded-[1rem]
-            border-[1px] border-solid border-[--background-alternate-2]">
+            rounded-[1rem]">
+            <div className="
+                relative
+                cursor-pointer
+                h-[30rem] min-w-[30rem]
+                rounded-[1rem]
+                border-[1px] border-dashed border-[--foreground]
+                flex flex-col justify-center items-center"
+                onClick={onImagePreviewClick}>
+                {isImageSelected ?
+                    <img className="h-full" ref={photoPreviewRef as any} /> :
+                    <div className="
+                        absolute 
+                        text-center p-[1rem]
+                        h-full w-full 
+                        flex flex-col justify-center items-center">
+                        <IoCloudUploadOutline className="text-[3.5rem]" />
+                        <h1 className="text-[1.5rem]">
+                            Click to upload or drag and drop
+                        </h1>
+                    </div>
+                }
+            </div>
             <BusyIndicator isScanning={isScanning} />
             {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
-            <div className="
-                cursor-pointer
-                flex items-center justify-center
-                h-[30rem] min-w-[30rem]"
-                onClick={onImagePreviewClick}>
-                {!isImageSelected ?
-                    <h1 className="text-[1.5rem]">
-                        Click here to select a photo
-                    </h1> : null
-                }
-                <img className="h-full" ref={photoPreviewRef as any} />
-            </div>
         </div>
     )
 }
