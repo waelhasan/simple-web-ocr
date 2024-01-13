@@ -1,7 +1,7 @@
 export function BusyIndicator({ isScanning }: { isScanning: boolean }) {
     return isScanning && (
         <div className="
-            w-[100%] h-[0.4rem] 
+            w-[100%] h-[0.2rem] 
             bg-[inherit]
             absolute top-0
             overflow-hidden
@@ -10,7 +10,7 @@ export function BusyIndicator({ isScanning }: { isScanning: boolean }) {
                 absoulte top-0
                 w-[100%] h-[100%]
                 rounded-full
-                bg-[--active]
+                bg-[--foreground]
                 animate-[passing_2s_ease-in-out_infinite]
             "/>
         </div>

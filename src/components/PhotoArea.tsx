@@ -17,14 +17,17 @@ export const PhotoArea = ({
     }
 
     return (
-        <div className="relative">
+        <div className="
+            relative 
+            bg-[--background-alternate-2] 
+            rounded-[1rem]
+            border-[1px] border-solid border-[--background-alternate-2]">
             <BusyIndicator isScanning={isScanning} />
             {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
             <div className="
                 cursor-pointer
                 flex items-center justify-center
-                h-[30rem] min-w-[30rem] 
-                border-[1px] border-solid border-[--background-alternate-2]"
+                h-[30rem] min-w-[30rem]"
                 onClick={onImagePreviewClick}>
                 {!isImageSelected ?
                     <h1 className="text-[1.5rem]">
