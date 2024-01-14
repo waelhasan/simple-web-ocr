@@ -8,7 +8,6 @@ import { LanguagesMenu } from "./LanguagesMenu"
 import { Buttons } from "./Buttons"
 import { PhotoArea } from "./PhotoArea"
 
-const defaultPhotoPath = ""
 const defaultImageLang = "eng"
 
 export const Photo = () => {
@@ -23,7 +22,7 @@ export const Photo = () => {
 
     function onClearBtnClick() {
         !!photoRef.current && (photoRef.current.value = "")
-        photoPreviewRef.current!.src = defaultPhotoPath!
+        photoPreviewRef.current!.src = ""
         setIsImageSelected(false)
         setExtractedText("")
         setImageLang(defaultImageLang)
