@@ -46,7 +46,7 @@ const Footer = () =>
     <div className="p-[1rem] border-[1px] border-dashed border-[--foreground] bg-[--background] text-center">
         You can find the source code of this App on
         <br />
-        <a href="https://github.com/waelhasan/abga-assessment" target="_blank" className="block mt-1">
+        <a href="https://github.com/waelhasan/simple-web-ocr" target="_blank" className="block mt-1">
             <FaGithub className="text-[3rem] mx-auto hover:scale-[1.1] hover:text-[--golden] duration-150" />
         </a>
     </div>
