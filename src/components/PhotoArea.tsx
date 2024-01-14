@@ -33,6 +33,7 @@ export const PhotoArea = ({
             onDrop={onDrop}
             className="
             relative 
+            overflow-hidden
             flex flex-col justify-center items-center
             drop-shadow
             bg-[--background-alternate-2] 
@@ -46,11 +47,13 @@ export const PhotoArea = ({
                 flex flex-col justify-center items-center"
                 onClick={onImagePreviewClick}>
                 {isImageSelected ?
-                    <img className="h-full" ref={photoPreviewRef as any} /> :
+                    <img className="h-full rounded-[1rem]" ref={photoPreviewRef as any} /> :
                     <div className="
                         absolute 
-                        text-center p-[1rem]
+                        p-[1rem]
                         h-full w-full 
+                        text-center hover:text-[--golden] 
+                        duration-150
                         flex flex-col justify-center items-center">
                         <IoCloudUploadOutline className="text-[3.5rem]" />
                         <h1 className="text-[1.5rem]">

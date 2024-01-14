@@ -56,7 +56,7 @@ export const Photo = () => {
     }
 
     return (
-        <div className="flex-[2] flex flex-col gap-[1rem] items-center w-fit mb-[1rem]">
+        <div className="flex-[2] flex flex-col gap-[1rem] items-center w-fit mb-[1rem] rounded-[1rem]">
             <ErrorToast isFailure={isFailure} setIsFailure={setIsFailure} />
             <PhotoArea
                 photoRef={photoRef}
