@@ -1,5 +1,5 @@
-export function BusyIndicator({ isScanning }: { isScanning: boolean }) {
-    return isScanning && (
+export function BusyIndicator({ isExtracting }: { isExtracting: boolean }) {
+    return isExtracting && (
         <div className="
             w-[100%] h-[0.2rem] 
             bg-[inherit]

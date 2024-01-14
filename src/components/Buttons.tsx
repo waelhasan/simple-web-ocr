@@ -1,20 +1,20 @@
 export function Buttons({
-    isScanning,
+    isExtracting,
     onClearBtnClick,
-    onScanBtnClick,
+    onExtractBtnClick,
     isImageSelected
 }: {
     isImageSelected: boolean,
-    isScanning: boolean,
+    isExtracting: boolean,
     onClearBtnClick: () => void,
-    onScanBtnClick: () => void,
+    onExtractBtnClick: () => void,
 }) {
     return (
         <div className="flex gap-0">
             <button
                 type="button"
-                disabled={isScanning || !isImageSelected}
-                onClick={onScanBtnClick}
+                disabled={isExtracting || !isImageSelected}
+                onClick={onExtractBtnClick}
                 className="
                 rounded-l-[1rem] border-[1px] border-transparent 
                     hover:border-[--background-alternate-2]
@@ -24,11 +24,11 @@ export function Buttons({
                 py-[0.5rem] px-[3rem]
                 cursor-pointer
                 w-full h-full">
-                Scan
+                Extract
             </button>
             <button
                 type="button"
-                disabled={isScanning || !isImageSelected}
+                disabled={isExtracting || !isImageSelected}
                 onClick={onClearBtnClick}
                 className="
                 inline-block

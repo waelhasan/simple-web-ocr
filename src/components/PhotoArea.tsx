@@ -3,13 +3,13 @@ import { IoCloudUploadOutline } from "react-icons/io5"
 import { BusyIndicator } from "./BusyIndicator"
 
 export const PhotoArea = ({
-    isScanning,
+    isExtracting,
     isImageSelected,
     photoRef,
     photoPreviewRef,
     setPhotoFromFile
 }: {
-    isScanning: boolean,
+    isExtracting: boolean,
     isImageSelected: boolean
     photoRef: MutableRefObject<HTMLInputElement | undefined>
     photoPreviewRef: MutableRefObject<HTMLImageElement | undefined>
@@ -59,8 +59,8 @@ export const PhotoArea = ({
                     </div>
                 }
             </div>
-            <BusyIndicator isScanning={isScanning} />
-            {isScanning && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
+            <BusyIndicator isExtracting={isExtracting} />
+            {isExtracting && <div className="absolute top-0 left-0 h-full w-full bg-[--overlay]" />}
         </div>
     )
 }

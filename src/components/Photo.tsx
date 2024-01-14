@@ -3,7 +3,7 @@
 import { useRef, useState } from "react"
 import Tesseract, { ImageLike } from "tesseract.js"
 import { ErrorToast } from "./ErrorToast"
-import { ScannedText } from "./ScannedText"
+import { ExtractedText } from "./ExtractedText"
 import { LanguagesMenu } from "./LanguagesMenu"
 import { Buttons } from "./Buttons"
 import { PhotoArea } from "./PhotoArea"
@@ -15,28 +15,28 @@ export const Photo = () => {
     const photoRef = useRef<HTMLInputElement>()
     const photoPreviewRef = useRef<HTMLImageElement>()
     const [isImageSelected, setIsImageSelected] = useState(false)
-    const [isScanning, setIsScanning] = useState(false)
+    const [isExtracting, setIsExtracting] = useState(false)
     const [isFailure, setIsFailure] = useState(false)
     const [photoData, setPhotoData] = useState<ImageLike>()
-    const [scannedText, setScannedText] = useState<string>()
+    const [extractedText, setExtractedText] = useState<string>()
     const [imageLang, setImageLang] = useState<string>(defaultImageLang)
 
     function onClearBtnClick() {
         !!photoRef.current && (photoRef.current.value = "")
         photoPreviewRef.current!.src = defaultPhotoPath!
         setIsImageSelected(false)
-        setScannedText("")
+        setExtractedText("")
         setImageLang(defaultImageLang)
     }
 
-    async function onScanBtnClick() {
+    async function onExtractBtnClick() {
         if (!isImageSelected) return setIsFailure(true)
-        setIsScanning(true)
+        setIsExtracting(true)
         // Extrtact the text
         if (!!photoData) {
             const result = await Tesseract.recognize(photoData, imageLang)
-            setScannedText(result.data.text)
-            setIsScanning(false)
+            setExtractedText(result.data.text)
+            setIsExtracting(false)
         }
     }
 
@@ -63,11 +63,11 @@ export const Photo = () => {
                 photoRef={photoRef}
                 photoPreviewRef={photoPreviewRef}
                 isImageSelected={isImageSelected}
-                isScanning={isScanning}
+                isExtracting={isExtracting}
                 setPhotoFromFile={setPhotoFromFile} />
             <LanguagesMenu
                 isImageSelected={isImageSelected}
-                isScanning={isScanning}
+                isExtracting={isExtracting}
                 language={imageLang}
                 setLanguage={setImageLang} />
             <input
@@ -78,13 +78,13 @@ export const Photo = () => {
                 accept="image/*"
                 onChange={onPhotoChange}
                 ref={photoRef as any}
-                disabled={isScanning} />
+                disabled={isExtracting} />
             <Buttons
                 isImageSelected={isImageSelected}
                 onClearBtnClick={onClearBtnClick}
-                onScanBtnClick={onScanBtnClick}
-                isScanning={isScanning} />
-            <ScannedText text={scannedText} />
+                onExtractBtnClick={onExtractBtnClick}
+                isExtracting={isExtracting} />
+            <ExtractedText text={extractedText} />
         </div>
     )
 }

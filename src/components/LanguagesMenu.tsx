@@ -1,12 +1,12 @@
 export function LanguagesMenu({
     language,
     setLanguage,
-    isScanning,
+    isExtracting,
     isImageSelected
 }: {
     language: string,
     setLanguage: (lang: string) => void
-    isScanning: boolean
+    isExtracting: boolean
     isImageSelected: boolean
 }) {
     return (
@@ -15,7 +15,7 @@ export function LanguagesMenu({
                 Language of the text in the image
             </span>
             <select
-                disabled={isScanning || !isImageSelected}
+                disabled={isExtracting || !isImageSelected}
                 onChange={e => setLanguage(e.target.value)}
                 value={language}
                 className="

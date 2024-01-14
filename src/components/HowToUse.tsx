@@ -9,7 +9,7 @@ export function HowToUse() {
         <ul className="flex-1 p-[2rem] text-[1.5rem]">
             <Li text="Select a photo, by clicking on the preview area, or dropping a photo on it" />
             <Li text="Select the language of the text inside the photo" />
-            <Li text="Click `Scan` button to start the scan process" />
+            <Li text="Click `Extract` button to start the text extraction process" />
             <Li text="Click `Clear` to clear photo and data" />
         </ul>
     )

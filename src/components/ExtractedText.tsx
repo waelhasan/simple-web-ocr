@@ -1,4 +1,4 @@
-export function ScannedText({ text }: { text: string | undefined }) {
+export function ExtractedText({ text }: { text: string | undefined }) {
     return !!text ? (
         <div className="
             rounded-[1rem]
